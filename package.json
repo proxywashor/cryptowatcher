@@ -5,7 +5,9 @@
   "main": "jest.config.js",
   "scripts": {
     "start": "ts-node src/app.ts",
-    "test": "test"
+    "test": "test",
+    "start:dev": "nodemon",
+    "listener": "ts-node src/mq/listener.ts"
   },
   "keywords": [
     "crypto"
@@ -13,6 +15,9 @@
   "author": "proxy",
   "license": "ISC",
   "dependencies": {
+    "amqplib": "^0.8.0",
+    "dotenv": "^10.0.0",
+    "ethers": "^5.4.4",
     "express": "^4.17.1",
     "mongoose": "^5.13.5",
     "typescript": "^4.3.5"

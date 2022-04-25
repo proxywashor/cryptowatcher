@@ -1,6 +1,7 @@
 import express, { Router } from 'express';
-import { User } from '../domain/user/models/user';
-import { CreateUserCommand } from '../domain/user/commands/create-user.command';
+import { User } from '../../../domain/user/models/user';
+import { CreateUserCommand } from '../../../domain/user/commands/create-user.command';
+import { ServerError } from '../../errors/server-error';
 
 const userRouter = Router();
 
@@ -13,7 +14,11 @@ userRouter.post('/', async (request: express.Request, response: express.Response
 
   const command = new CreateUserCommand();
 
-  await command.execute(user);
+  try {
+    await command.execute(user);
+  } catch (e) {
+    throw new ServerError();
+  }
   return response.status(201);
 });
 
